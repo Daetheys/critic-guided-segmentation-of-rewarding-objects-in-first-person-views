@@ -19,7 +19,7 @@ import gzip
 import math
 from PIL import Image, ImageDraw, ImageFont
 import ffmpeg
-import denseCRF
+import pydensecrf
 
 
 def get_moving_avg(x, n=10):
@@ -1241,7 +1241,7 @@ class Handler():
             for i, img in enumerate(imgs[::skip]):
                 maskframe = M[i,0]
                 prob = np.stack((1-maskframe, maskframe), axis=-1)
-                seg = denseCRF.densecrf((255*img).astype(np.uint8), prob, param)
+                seg = pydensecrf.densecrf((255*img).astype(np.uint8), prob, param)
                 if not i%50:
                     plt.imsave(resultdir+f"crf/{i}_mask.png", maskframe)
                     plt.imsave(resultdir+f"crf/{i}_img.png", img)
