@@ -66,7 +66,7 @@ class Handler():
     def __init__(self, args: argparse.Namespace):
         self.args = args
         argdict = args.__dict__
-        self.font = ImageFont.truetype("./isy_minerl/segm/etc/Ubuntu-R.ttf", 10)
+        #self.font = ImageFont.truetype("./isy_minerl/segm/etc/Ubuntu-R.ttf", 10)
         self.device = "cuda" if T.cuda.is_available() else "cpu"
         print("device:", self.device)
         self.models = dict()
@@ -216,10 +216,10 @@ class Handler():
                     draw = ImageDraw.Draw(img)
                     for i, value in enumerate(Y.tolist()):
                         x, y = int(i * img.width / len(X)), 1
-                        draw.text((x, y), str(round(value, 3)), fill=(255, 255, 255), font=self.font)
+                        draw.text((x, y), str(round(value, 3)), fill=(255, 255, 255))#, font=self.font)
                     for i, value in enumerate(pred.tolist()):
                         x, y = int(i * img.width / len(X)), int(1 + img.height / 2)
-                        draw.text((x, y), str(round(value, 3)), fill=(255, 255, 255), font=self.font)
+                        draw.text((x, y), str(round(value, 3)), fill=(255, 255, 255))#, font=self.font)
 
                     # plt.imsave(result_path+f"e{epoch}_b{b_idx}.png", viz)
                     img.save(result_path + f"e{epoch}_b{b_idx}.png")
