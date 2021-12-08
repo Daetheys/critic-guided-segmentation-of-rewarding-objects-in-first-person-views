@@ -1285,7 +1285,7 @@ class Handler():
 
         os.makedirs(datadir, exist_ok=True)
         if not os.path.exists(f"{os.getenv('MINERL_DATA_ROOT', 'data/')}/MineRL{envname}VectorObf-v0"):
-            minerl.data.download(os.getenv('MINERL_DATA_ROOT', 'data/'), experiment=f'MineRL{envname}VectorObf-v0')
+            minerl.data.download(os.getenv('MINERL_DATA_ROOT', 'data/'), environment=f'MineRL{envname}VectorObf-v0')
         data = minerl.data.make(f'MineRL{envname}VectorObf-v0', data_dir=os.getenv('MINERL_DATA_ROOT', 'data/'),
                                 num_workers=args.workers[0], worker_batch_size=args.workers[1])
         names = data.get_trajectory_names()
