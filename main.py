@@ -1242,7 +1242,7 @@ class Handler():
             for i, img in enumerate(imgs[::skip]):
                 maskframe = M[i,0]
                 prob = np.stack((1-maskframe, maskframe), axis=-1)
-                seg = pydensecrf.densecrf((255*img).astype(np.uint8), prob, param)
+                seg = (255*img).astype(np.uint8)*prob#pydensecrf.densecrf((255*img).astype(np.uint8), prob, param)
                 if not i%50:
                     plt.imsave(resultdir+f"crf/{i}_mask.png", maskframe)
                     plt.imsave(resultdir+f"crf/{i}_img.png", img)
